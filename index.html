@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy File Sharing</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-512/my-files-1-461722.png"
+        type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <div class="message">
+            <div id="msg-icon">
+                <img src="./check.svg" />
+            </div>
+            <p id="msg-text">Message will displayed here</p>
+        </div>
+        <div class="content">
+            <div class="main">
+                <p> Drop or select file</p>
+                <label for="file">
+                    <img src="https://cdn.iconscout.com/icon/free/png-512/my-files-1-461722.png" alt="" srcset="">
+                </label>
+                <input type="file" name="file" id="file">
+            </div>
+            <div class="selected-file">
+                <div class="selectMain">
+                    <div class="left">
+                        <span>
+                            <h5>File Name : </h5>
+                            <p id="file-name">file name</p>
+                        </span>
+                        <span>
+                            <h5>File size : </h5>
+                            <p id="size">10kb</p>
+                        </span>
+                    </div>
+                    <button id="remove-file">Clear</button>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <p>Uploading File...</p>
+                <h4 id="percentage">0%</h4>
+                <div id="progress">
+                </div>
+            </div>
+            <div class="link-div">
+                <p>Link will expire in 24 hours</p>
+                <div class="link-div-main">
+                    <input readonly value="hi this" id="copy-link" />
+                    <img src="../copy.svg" alt="" id="copy">
+                </div>
+            </div>
+            <span id="or">Or</span>
+            <div class="mail-div">
+                <form action="/send/mail" method="POST" class="mail-div-main">
+                    <h5>Send Via Mail</h5>
+                    <input id="from" name="to" type="email" placeholder="From" />
+                    <input id="to" name="from" type="email" placeholder="To" />
+                    <button type="submit" id="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html>
