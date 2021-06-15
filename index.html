@@ -7,11 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy File Sharing</title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-512/my-files-1-461722.png"
         type="image/x-icon">
 </head>
 
 <body>
+    <nav>
+
+        <img src="https://cdn.iconscout.com/icon/free/png-512/my-files-1-461722.png" alt="">
+
+        <h3 class="animate__bounce">Fileshare</h3>
+    </nav>
     <div class="container">
         <div class="message">
             <div id="msg-icon">
@@ -20,14 +27,15 @@
             <p id="msg-text">Message will displayed here</p>
         </div>
         <div class="content">
-            <div class="main">
-                <p> Drop or select file</p>
+            <div class="main ">
+                <p class=" scale-in-center "> Drop or select file</p>
                 <label for="file">
-                    <img src="https://cdn.iconscout.com/icon/free/png-512/my-files-1-461722.png" alt="" srcset="">
+                    <img class="heartbeat" src="https://cdn.iconscout.com/icon/free/png-512/my-files-1-461722.png"
+                        alt="" srcset="">
                 </label>
                 <input type="file" name="file" id="file">
             </div>
-            <div class="selected-file">
+            <div class="selected-file scale-in-center">
                 <div class="selectMain">
                     <div class="left">
                         <span>
@@ -42,21 +50,23 @@
                     <button id="remove-file">Clear</button>
                 </div>
             </div>
-            <div class="progress-bar">
-                <p>Uploading File...</p>
+            <div class="progress-bar scale-in-center">
+                <p class="animate__pulse">Uploading File...</p>
                 <h4 id="percentage">0%</h4>
                 <div id="progress">
                 </div>
             </div>
-            <div class="link-div">
+            <div class="link-div scale-in-center">
                 <p>Link will expire in 24 hours</p>
                 <div class="link-div-main">
                     <input readonly value="hi this" id="copy-link" />
-                    <img src="../copy.svg" alt="" id="copy">
+                    <div class="copy-icon">
+                        <img src="../copy.svg" alt="" id="copy">
+                    </div>
                 </div>
             </div>
             <span id="or">Or</span>
-            <div class="mail-div">
+            <div class="mail-div scale-in-center">
                 <form action="/send/mail" method="POST" class="mail-div-main">
                     <h5>Send Via Mail</h5>
                     <input id="from" name="to" type="email" placeholder="From" />

@@ -58,32 +58,39 @@ submit.addEventListener("click", (e) => {
   e.preventDefault();
   const to = document.getElementById("to");
   const from = document.getElementById("from");
-  submit.innerText = "Sending mail...";
-  submit.disabled = true;
 
-  const data = {
-    to: to.value,
-    from: from.value,
-    uid: link.value.split("/").splice(-1, 1),
-  };
+  if (!to.value || !from.value) {
+    message("All filds are required !", "red", true);
+    submit.innerText = "Send";
+    submit.disabled = false;
+  } else {
+    submit.innerText = "Sending mail...";
+    submit.disabled = true;
+    const data = {
+      to: to.value,
+      from: from.value,
+      uid: link.value.split("/").splice(-1, 1),
+    };
 
-  fetch(EMAIL_UPLOAD, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      message("Email sent !", "green");
-      submit.innerText = "Send";
-      submit.disabled = false;
-      setTimeout(() => {
-        clear();
-      }, 3000);
+    fetch(EMAIL_UPLOAD, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
-    .catch((err) => message("Something went wrong !", "red"));
+      .then((res) => res.json())
+      .then((data) => {
+        message("Email sent !", "green");
+        submit.innerText = "Send";
+        submit.disabled = false;
+
+        setTimeout(() => {
+          clear();
+        }, 3000);
+      })
+      .catch((err) => message("Something went wrong !", "red"));
+  }
 });
 
 const UploadFile = (e) => {
@@ -91,6 +98,7 @@ const UploadFile = (e) => {
   const file = fileInput.files[0];
   if (fileInput.files.length > 1) {
     message("Only on file will be uploaded !", "red", true);
+    upload();
   } else if (file.size > 10 ** 6 * 100) {
     message("File size is to large !", "red", true);
   } else if (fileInput.files.length == 1) {
@@ -135,10 +143,11 @@ const upload = () => {
 copy.addEventListener("click", (e) => {
   const copyLink = document.querySelector("#copy-link");
   navigator.clipboard.writeText(copyLink.value);
-  message("Copied to clipboard");
+  message("Copied to clipboard", "orange");
 });
 
 let timer;
+
 const message = (msg, color, error) => {
   if (error) {
     document.getElementById("msg-icon").innerHTML = `<img src="./error.svg" />`;
@@ -154,6 +163,7 @@ const message = (msg, color, error) => {
 
   timer = setTimeout(() => {
     messageDiv.classList.remove("show-message");
+    color = "orange";
   }, 2500);
 };
 
